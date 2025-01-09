@@ -1,5 +1,6 @@
 package com.udemy.JavaOOUdemySpringBoot.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.udemy.JavaOOUdemySpringBoot.entities.pk.OrderItemPK;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.EmbeddedId;
@@ -13,7 +14,8 @@ import java.util.Objects;
 public class OrderItem {
 
     @EmbeddedId
-    private OrderItemPK id;
+    private OrderItemPK id = new OrderItemPK();
+
     private Integer quantity;
     private Double price;
 
@@ -26,6 +28,7 @@ public class OrderItem {
         this.price = price;
     }
 
+    @JsonIgnore
     public Order getOrder() {
         return id.getOrder();
     }
